@@ -1,0 +1,22 @@
+---
+- name: Install and start nginx
+  hosts: localhost
+  become: yes
+
+  tasks:
+    - name: Install nginx
+      apt:
+        name: nginx
+        state: present
+        update_cache: yes
+    
+    - name: Start nging service
+      service:
+        name: nginx
+        state: started
+        enabled: yes
+    
+    - name: Create a file:
+      file:
+        path: /home/ubuntu/demo.txt
+        state: touch
